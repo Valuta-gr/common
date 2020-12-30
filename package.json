@@ -1,0 +1,21 @@
+{
+    "name": "common",
+    "version": "1.0.0",
+    "description": "",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "files": [
+      "dist/**/*"
+    ],
+    "scripts": {
+      "clean": "rimraf ./dist",
+      "build": "npm run clean && tsc",
+      "pub": "git add . && git commit -m \"feat: new version\" && npm run build && npm publish"
+    },
+    "keywords": [],
+    "author": "",
+    "devDependencies": {
+      "rimraf": "^3.0.2",
+      "typescript": "^3.8.3"
+    }
+  }
