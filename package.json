@@ -10,7 +10,7 @@
   "scripts": {
     "clean": "rimraf ./dist",
     "build": "npm run clean && tsc",
-    "pub": "git add . && git commit -m \"semver: automated update\" && npm version patch && npm run build && npm publish --access=public"
+    "pub": "git add . && git commit -m \"semver: automated update\" && npm version patch && npm run build && npm publish"
   },
   "license": "",
   "keywords": [],
