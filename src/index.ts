@@ -9,4 +9,6 @@ export * from "./errors/request-validation-error";
 export * from "./middlewares/error-handler";
 export * from "./middlewares/validate-request";
 
-export const version = () => process.env.npm_package_version!;
+export const version = () =>
+  process.env.npm_package_version! ||
+  "Cannot get current version at the moment, refer to package.json";
