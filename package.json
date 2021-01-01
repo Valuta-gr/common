@@ -1,6 +1,6 @@
 {
   "name": "@valuta/common",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "Shared code that is used amongst the codebase of Valuta, not really intended for public use.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
