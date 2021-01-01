@@ -1,3 +1,5 @@
+/* Index file */
+
 export * from "./utils/env-is-provided";
 
 export * from "./errors/custom-error";
