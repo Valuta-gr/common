@@ -1,19 +1,23 @@
 name: deploy-common
-on:
-  push:
-    branches:
-      - main
-    paths:
-      - "src/**"
+on: [push]
 
 jobs:
-  publish:
-    runs-on: ubuntu-latest
+  test-and-release:
+    name: Run tests and release
+    runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
         with:
-          node-version: 10
-      - run: git config --global user.email "me@edpasenidis.tech" && git config --global user.name "Edward Pasenidis"
-      - run: npm set //npm.pkg.github.com/:_authToken ${{ secrets.NPM_TOKEN }}
-      - run: npm version patch && npm publish
+          node-version: 12
+      - name: Install dependencies
+        run: npm ci
+      - name: Run tests
+        run: npm test
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          run: npm run semantic-release
