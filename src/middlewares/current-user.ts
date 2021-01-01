@@ -8,3 +8,5 @@ declare namespace Express {
     user?: User;
   }
 }
+
+/* TODO: implement a "current user" middleware */
