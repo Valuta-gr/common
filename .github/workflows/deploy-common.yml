@@ -1,5 +1,10 @@
 name: deploy-common
-on: [push]
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "/**"
 
 jobs:
   test-and-release:
