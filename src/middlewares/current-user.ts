@@ -1,12 +1,34 @@
-interface User {
-  id: string | number;
+import { Request, Response, NextFunction } from "express";
+import jwt from "jsonwebtoken";
+
+interface UserPayload {
+  id: string;
   email: string;
 }
 
-declare namespace Express {
-  export interface Request {
-    user?: User;
+declare global {
+  namespace Express {
+    interface Request {
+      currentUser?: UserPayload;
+    }
   }
 }
 
-/* TODO: implement a "current user" middleware */
+export const currentUser = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  if (!req.session?.jwt) {
+    return next();
+  }
+  try {
+    const payload = jwt.verify(
+      req.session.jwt,
+      process.env.JWT_KEY!
+    ) as UserPayload;
+    req.currentUser = payload;
+  } catch (error) {}
+
+  next();
+};
