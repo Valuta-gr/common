@@ -1,7 +1,17 @@
 {
   "name": "@valuta/common",
-  "version": "1.0.15",
+  "version": "0.0.0-development",
   "description": "Shared code that is used amongst the codebase of Valuta, not really intended for public use.",
+  "publishConfig": {
+    "access": "public",
+    "branches": [
+      "main"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Valuta-gr/common.git"
+  },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
@@ -10,14 +20,16 @@
   "scripts": {
     "clean": "rimraf ./dist",
     "build": "npm run clean && tsc",
-    "pub": "git add . && git commit -m \"semver: automated update\" && npm version patch && npm run build && npm publish"
+    "pub": "git add . && git commit -m \"semver: automated update\" && npm version patch && npm run build && npm publish",
+    "semantic-release": "semantic-release"
   },
   "license": "",
   "keywords": [],
   "author": "Edward Pasenidis <me@edpasenidis.tech>",
   "devDependencies": {
     "rimraf": "^3.0.2",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "semantic-release": "^17.3.1"
   },
   "dependencies": {
     "@types/express": "^4.17.9",
