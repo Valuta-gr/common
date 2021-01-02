@@ -11,5 +11,10 @@ export const requireAuth = (
     throw new NotAuthorizedError();
   }
 
+  /**
+   * @todo create a cookie session middleware
+   * @body use the `cookie-session` package
+   */
+
   next();
 };

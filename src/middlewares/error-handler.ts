@@ -1,8 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { Logger } from "tslog";
 import { CustomError } from "../errors/custom-error";
-
-const log = new Logger();
 
 export const errorHandler = (
   err: Error,
