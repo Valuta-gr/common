@@ -1,6 +1,6 @@
 {
   "name": "@valuta/common",
-  "version": "0.0.0-development",
+  "version": "0.0.0",
   "description": "Shared code that is used amongst the codebase of Valuta, not really intended for public use.",
   "repository": {
     "type": "git",
