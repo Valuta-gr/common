@@ -1,8 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import { NotAuthorizedError } from "../errors/not-authorized-error";
 
-export interface UserPayload {
+interface UserPayload {
   id: string;
   email: string;
 }
@@ -15,22 +14,22 @@ declare global {
   }
 }
 
-export const currentUser = async (
+export const currentUser = (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  if (typeof req.headers.authorization === "undefined") {
-    throw new NotAuthorizedError();
+  if (!req.session?.jwt) {
+    return next();
   }
 
   try {
-    const payload = (await jwt.verify(
-      req.headers.authorization,
+    const payload = jwt.verify(
+      req.session.jwt,
       process.env.JWT_KEY!
-    )) as UserPayload;
+    ) as UserPayload;
     req.currentUser = payload;
-  } catch (error) {}
+  } catch (err) {}
 
   next();
 };
