@@ -9,6 +9,7 @@ export const requireAuth = (
 ) => {
   if (typeof req.headers.authorization !== "undefined") {
     let token = req.headers.authorization.split(" ")[1];
+    console.log(token);
 
     jwt.verify(token, process.env.JWT_KEY!, (err, decoded) => {
       if (err) throw new NotAuthorizedError();
